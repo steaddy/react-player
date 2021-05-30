@@ -3,7 +3,7 @@ import Song from './Song';
 import Player from './Player';
 import Library from './Library';
 import Nav from './nav';
-import './../styles/app.scss';
+import '../styles/app.scss';
 import data from '../data';
 
 
@@ -26,17 +26,17 @@ const App = () => {
     //  Handlers
 
     const timeUpdateHandler = (e) => {
-        const currentTime = e.target.currentTime;
-        const duration = e.target.duration;
+        const { currentTime } = e.target.currentTime;
+        const { duration } = e.target.duration;
         // Calculate Percentage
-        const roundedCurrent = Math.round(currentTime);
+        // const roundedCurrent = Math.round(currentTime);
         const roundedDuration = Math.round(duration);
         const animationPercentage = Math.round((currentTime / roundedDuration) * 100);
         setSongInfo({...songInfo, currentTime, duration, animationPercentage})
     };
 
     const songEndHandler = async () => {
-        let currentIndex = songs.findIndex(song => currentSong.id === song.id);
+        const currentIndex = songs.findIndex(song => currentSong.id === song.id);
         await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
     };
 
@@ -49,12 +49,12 @@ const App = () => {
                     ...mapSong,
                     active: true,
                 }
-            } else {
+            } 
                 return {
                     ...mapSong,
                     active: false,
                 }
-            }
+            
         });
         setSongs(newSongs);
     };

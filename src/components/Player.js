@@ -4,11 +4,9 @@ import {playAudio} from "../util";
 
 const Player = ({currentSong, isPlaying, setIsPlaying, audioRef, setSongInfo, songInfo, songs, setCurrentSong, setSongs, activeLibraryHandler}) => {
 
-    const getTime = time => {
-        return (
-            Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
+    const getTime = time => (
+            `${Math.floor(time / 60)  }:${  (`0${  Math.floor(time % 60)}`).slice(-2)}`
         );
-    };
 
 
     // Event handlers
@@ -28,7 +26,7 @@ const Player = ({currentSong, isPlaying, setIsPlaying, audioRef, setSongInfo, so
     };
 
     const skipTrackHandler = (direction) => {
-        let currentIndex = songs.findIndex(song => currentSong.id === song.id);
+        const currentIndex = songs.findIndex(song => currentSong.id === song.id);
         if (direction === 'skip-forward') {
             setCurrentSong(songs[(currentIndex + 1) % songs.length]);
             activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
@@ -59,7 +57,7 @@ const Player = ({currentSong, isPlaying, setIsPlaying, audioRef, setSongInfo, so
                         value={songInfo.currentTime}
                         type="range"
                     />
-                    <div className="animate-track" style={{transform: `translateX(${songInfo.animationPercentage}%)`}}></div>
+                    <div className="animate-track" style={{transform: `translateX(${songInfo.animationPercentage}%)`}} />
                 </div>
                 <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
             </div>

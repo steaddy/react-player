@@ -23,7 +23,7 @@ const App = () => {
     });
     const [libraryStatus, setLibraryStatus] = useState(false);
 
-    // Handlers
+    //  Handlers
 
     const timeUpdateHandler = (e) => {
         const currentTime = e.target.currentTime;
